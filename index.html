@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ULTIMATE UNBAN EVENT!</title>
+    <style>
+        body {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a0033 0%, #000000 50%, #330066 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            perspective: 1000px;
+            cursor: crosshair;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            transition: background-color 0.1s ease;
+        }
+
+         @keyframes camera-shake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            10%, 30%, 50%, 70%, 90% { transform: translate(-3%, -3%) rotate(-1deg); }
+            20%, 40%, 60%, 80% { transform: translate(3%, 3%) rotate(1deg); }
+         }
+         body.camera-shake-animation {
+             animation: camera-shake 0.5s ease-in-out both;
+         }
+
+         @keyframes background-flash {
+            0% { background-color: #1a0033; }
+            10% { background-color: #ff00ff; }
+            20% { background-color: #00ffff; }
+            30% { background-color: #ffff00; }
+            40% { background-color: #00ff00; }
+            50% { background-color: #ff00ff; }
+            60% { background-color: #00ffff; }
+            70% { background-color: #ffff00; }
+            80% { background-color: #00ff00; }
+            90% { background-color: #ff00ff; }
+            100% { background-color: #1a0033; }
+         }
+         @keyframes hue-rotate {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+         }
+         body.unbanning {
+             animation: background-flash 0.2s linear infinite, hue-rotate 0.5s linear infinite;
+         }
+         body.unbanned {
+             background: linear-gradient(135deg, #FFD700 0%, #A020F0 50%, #00ff00 100%);
+             animation: none;
+             filter: none;
+         }
+
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 5px solid #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 90%;
+            width: 600px;
+            transform: translate3d(0,0,0) rotateX(0deg) rotateY(0deg);
+            transition: transform 0.3s ease-out, border-color 0.5s ease, box-shadow 0.5s ease;
+            position: relative;
+            will-change: transform;
+            backface-visibility: hidden;
+            z-index: 10;
+        }
+
+         .container::before {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; width: 30px; height: 30px;
+            border-top: 5px solid #ff00ff;
+            border-left: 5px solid #ff00ff;
+            transform: skew(15deg);
+             z-index: 1;
+             transition: border-color 0.5s ease;
+        }
+         .container::after {
+            content: '';
+            position: absolute;
+            bottom: -10px; right: -10px; width: 30px; height: 30px;
+            border-bottom: 5px solid #ff00ff;
+            border-right: 5px solid #ff00ff;
+            transform: skew(15deg);
+             z-index: 1;
+              transition: border-color 0.5s ease;
+        }
+
+        h1 {
+            color: #FFD700;
+            text-shadow: 2px 2px #A020F0;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            animation: pulse-title 1.5s infinite alternate;
+            transition: transform 0.3s ease-out, color 0.5s ease, text-shadow 0.5s ease, opacity 0.5s ease, height 0.5s ease 0.5s, margin 0.5s ease 0.5s;
+            will-change: transform;
+            position: relative;
+            z-index: 1;
+        }
+         body.unbanned h1 {
+             opacity: 0;
+             height: 0;
+             margin-top: 0;
+             margin-bottom: 0;
+             overflow: hidden;
+         }
+
+
+         @keyframes pulse-title {
+            from { transform: scale(1) translateY(0) translateZ(0); }
+            to { transform: scale(1.05) translateY(0) translateZ(0); }
+        }
+
+         @keyframes shake-and-flip {
+            0% { transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg); }
+            10%, 30%, 50%, 70%, 90% { transform: translate3d(-20px, -20px, 0) rotateX(190deg) rotateY(190deg); }
+            20%, 40%, 60%, 80% { transform: translate3d(20px, 20px, 0) rotateX(170deg) rotateY(170deg); }
+            100% { transform: translate3d(0, 0, 0) rotateX(360deg) rotateY(360deg); }
+         }
+         .container.shake-and-flip-animation {
+             animation: shake-and-flip 1s cubic-bezier(.36,.07,.19,.97) both;
+             transform: translate3d(0,0,0) rotateX(0deg) rotateY(0deg);
+             filter: brightness(2);
+             transition: filter 0.5s ease;
+         }
+         .container.shake-and-flip-animation.end-shake {
+             filter: brightness(1);
+         }
+
+
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            opacity: 1;
+            transition: opacity 0.3s ease-in;
+             flex-wrap: wrap;
+        }
+         body.unbanned #countdown {
+             opacity: 0;
+             height: 0;
+             overflow: hidden;
+             transition: opacity 0.3s ease-in, height 0.5s ease-in-out 0.3s;
+         }
+
+         @keyframes explode {
+            0% { transform: translate(0,0) scale(1) rotate(0deg); opacity: 1; filter: blur(0); }
+            50% { opacity: 1; }
+            100% { transform: translate(var(--translate-x), var(--translate-y)) scale(0) rotate(1440deg); opacity: 0; filter: blur(20px); }
+         }
+         body.trigger-explosion .countdown-item {
+             animation: explode 1.5s ease-out forwards;
+         }
+
+
+         #countup {
+             display: none;
+             justify-content: center;
+             gap: 20px;
+             margin-top: 20px;
+             opacity: 0;
+             transition: opacity 1s ease-in-out 1s;
+              flex-wrap: wrap;
+         }
+         body.unbanned #countup {
+            display: flex;
+            opacity: 1;
+         }
+
+
+        .countdown-item, .countup-item {
+            background-color: rgba(0, 255, 255, 0.15);
+            border: 2px solid #00ffff;
+            padding: 15px 10px;
+            border-radius: 5px;
+            min-width: 90px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            --translate-x: 0;
+            --translate-y: 0;
+             transition: border-color 0.5s ease, background-color 0.5s ease, transform 0.3s ease-out;
+        }
+
+         @keyframes final-countdown-pulse {
+            0% { transform: scale(1.1); box-shadow: 0 0 15px rgba(0, 255, 255, 1); border-color: #00ffff; }
+            50% { transform: scale(1.3); box-shadow: 0 0 30px rgba(255, 0, 255, 1.5); border-color: #ff00ff; }
+            100% { transform: scale(1.1); box-shadow: 0 0 15px rgba(0, 255, 255, 1); border-color: #00ffff; }
+         }
+        #item-seconds.final-countdown-item {
+            animation: final-countdown-pulse 0.5s infinite alternate;
+            transition: none;
+        }
+         #item-seconds.final-countdown-item span:first-child {
+            color: #ff00ff;
+            text-shadow: 1px 1px 15px rgba(255, 0, 255, 2);
+            transition: none;
+        }
+         #item-seconds.final-countdown-item .countdown-label {
+            color: #ffff00;
+            transition: none;
+         }
+
+
+        .countdown-item span:first-child,
+        .countup-item span:first-child {
+            font-size: 3em;
+            color: #00ff00;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+            display: block;
+            margin-bottom: 2px;
+            font-weight: bold;
+            transform: translateZ(0);
+            opacity: 1;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out, color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        @keyframes numberPop {
+            0% { transform: scale(1) translateZ(0); opacity: 1; }
+            50% { transform: scale(1.5) translateZ(70px); opacity: 0.5; }
+            100% { transform: scale(1) translateZ(0); opacity: 1; }
+        }
+        .countdown-item span:first-child.animate,
+        .countup-item span:first-child.animate {
+            animation: numberPop 0.5s ease-in-out forwards;
+        }
+
+
+        .countdown-label, .countup-label {
+            font-size: 0.9em;
+            color: #cccccc;
+            display: block;
+            text-transform: uppercase;
+            font-weight: normal;
+            transition: color 0.5s ease;
+        }
+
+        #message {
+            margin-top: 40px;
+            font-size: 2.5em;
+            color: #00ff00;
+            text-shadow: 3px 3px 8px #FFD700;
+            font-weight: bold;
+            text-transform: uppercase;
+            min-height: 1.5em;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: pulse-message 1.5s infinite ease-in-out;
+        }
+         body.unbanned #message {
+             color: #FFD700;
+             text-shadow: 3px 3px 8px #A020F0;
+             animation: pulse-unbanned-message 0.6s infinite alternate;
+         }
+         @keyframes pulse-unbanned-message {
+             0% { opacity: 1; transform: scale(1); }
+             100% { opacity: 0.9; transform: scale(1.15); }
+         }
+
+
+         @keyframes messageEntry {
+            0% { opacity: 0; transform: scale(0.1) translateY(150px) rotate(-540deg); filter: blur(30px); }
+            60% { opacity: 1; transform: scale(1.5) translateY(-30px) rotate(50deg); filter: blur(0); }
+            100% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); filter: blur(0); }
+         }
+         #message.entry-animation {
+             animation: messageEntry 1.5s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+         }
+
+
+         body.unbanned .container {
+            border-color: #FFD700;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 1.2);
+         }
+          body.unbanned .container::before,
+          body.unbanned .container::after {
+               border-color: #00ff00;
+          }
+
+          body.unbanned .countup-item {
+            border-color: #A020F0;
+            background-color: rgba(160, 32, 240, 0.3);
+          }
+
+           body.unbanned .countup-item span:first-child {
+               color: #FFD700;
+           }
+            body.unbanned .countup-label {
+               color: #00ffff;
+            }
+
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 20;
+        }
+         @keyframes particle-burst {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--end-x, 0), var(--end-y, 0)) scale(0.1) rotate(var(--end-rotate, 720deg)); opacity: 0; }
+         }
+
+
+    </style>
+</head>
+<body id="body">
+
+    <div class="container" id="container">
+        <h1 id="main-title">Αντίστροφη Μέτρηση για το Fortnite Unban!</h1>
+        <div id="countdown">
+            <div class="countdown-item" id="item-days">
+                <span id="days"></span>
+                <span class="countdown-label">Ημέρες</span>
+            </div>
+            <div class="countdown-item" id="item-hours">
+                <span id="hours"></span>
+                <span class="countdown-label">Ώρες</span>
+            </div>
+            <div class="countdown-item" id="item-minutes">
+                <span id="minutes"></span>
+                <span class="countdown-label">Λεπτά</span>
+            </div>
+            <div class="countdown-item" id="item-seconds">
+                <span id="seconds"></span>
+                <span class="countdown-label">Δευτερόλεπτα</span>
+            </div>
+        </div>
+
+         <div id="countup">
+            <div class="countup-item" id="item-updays">
+                <span id="updays"></span>
+                <span class="countup-label">Ημέρες Από</span>
+            </div>
+            <div class="countup-item" id="item-uphours">
+                <span id="uphours"></span>
+                <span class="countup-label">Ώρες Από</span>
+            </div>
+            <div class="countup-item" id="item-upminutes">
+                <span id="upminutes"></span>
+                <span class="countup-label">Λεπτά Από</span>
+            </div>
+            <div class="countup-item" id="upseconds" >
+                <span id="upseconds"></span>
+                <span class="countup-label">Δευτερόλεπτα Από</span>
+            </div>
+        </div>
+
+
+        <p id="message"></p>
+    </div>
+
+    <script>
+        // ΟΡΙΣΤΕ ΤΗΝ ΗΜΕΡΟΜΗΝΙΑ ΣΤΟΧΟ
+        // ΓΙΑ ΤΟ ΚΑΝΟΝΙΚΟ UNBAN (27 Μαρτίου 2026):
+         const targetDate = new Date(2026, 2, 27, 0, 0, 0).getTime();
+
+        // ΓΙΑ ΔΟΚΙΜΗ (30 δευτερόλεπτα από τώρα):
+        // const targetDate = new Date().getTime() + 30000;
+
+
+        const body = document.getElementById('body');
+        const container = document.getElementById('container');
+        const countdownDiv = document.getElementById('countdown');
+        const countupDiv = document.getElementById('countup');
+        const messageElement = document.getElementById('message');
+        const titleElement = document.getElementById('main-title');
+
+        const countdownItems = document.querySelectorAll('#countdown .countdown-item');
+        const secondsItem = document.getElementById('item-seconds');
+
+
+        let prevDays, prevHours, prevMinutes, prevSeconds;
+        let transitionStarted = false;
+
+        function animateChange(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            element.classList.remove('animate');
+            requestAnimationFrame(() => {
+                 requestAnimationFrame(() => {
+                     element.classList.add('animate');
+                 });
+             });
+        }
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+
+             const containerRect = container.getBoundingClientRect();
+             const startX = containerRect.left + containerRect.width / 2;
+             const startY = containerRect.top + containerRect.height / 2;
+
+            particle.style.position = 'fixed';
+            particle.style.left = `${startX}px`;
+            particle.style.top = `${startY}px`;
+
+            const size = Math.random() * 15 + 5;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+
+            particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
+
+            const endX = startX + (Math.random() - 0.5) * window.innerWidth * 2.5;
+            const endY = startY + (Math.random() - 0.5) * window.innerHeight * 2.5;
+            const endRotate = Math.random() * 1800 - 900;
+
+            particle.style.setProperty('--end-x', `${endX - startX}px`);
+            particle.style.setProperty('--end-y', `${endY - startY}px`);
+            particle.style.setProperty('--end-rotate', `${endRotate}deg`);
+
+            const duration = Math.random() * 1.5 + 1.5;
+            particle.style.animation = `particle-burst ${duration}s ease-out forwards`;
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, duration * 1000 + 50);
+        }
+
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if ((distance <= 1000 && distance >= -1000) && !transitionStarted) {
+
+                transitionStarted = true;
+
+                // --- Trigger Super Animation Sequence ---
+
+                body.classList.add('unbanning', 'camera-shake-animation');
+                messageElement.innerText = "ΕΤΟΙΜΑΣΟΥ ΓΙΑ ΤΟ ΧΑΟΣ!";
+
+
+                container.classList.add('shake-and-flip-animation');
+
+                 const numberOfParticles = 250;
+                 for (let i = 0; i < numberOfParticles; i++) {
+                    createParticle();
+                 }
+
+
+                const shakeAndFlipDuration = 1000;
+
+                setTimeout(() => {
+                    container.classList.remove('shake-and-flip-animation');
+                    container.classList.add('end-shake');
+                    body.classList.remove('camera-shake-animation');
+
+
+                    body.classList.add('trigger-explosion');
+
+                    countdownItems.forEach(item => {
+                         const randomX = (Math.random() - 0.5) * 1000;
+                         const randomY = (Math.random() - 0.5) * 1000;
+                        item.style.setProperty('--translate-x', `${randomX}px`);
+                        item.style.setProperty('--translate-y', `${randomY}px`);
+                     });
+
+
+                    const explodeDuration = 1500;
+
+                    setTimeout(() => {
+                         body.classList.remove('trigger-explosion');
+                         body.classList.remove('unbanning');
+
+
+                        countdownDiv.style.display = 'none';
+                        countupDiv.style.display = 'flex';
+
+                        body.classList.add('unbanned');
+
+
+                        titleElement.innerText = "";
+                        titleElement.style.opacity = '0';
+                         titleElement.style.height = '0';
+                         titleElement.style.marginTop = '0';
+                         titleElement.style.marginBottom = '0';
+
+
+                        messageElement.innerText = "ΤΟ UNBAN ΗΡΘΕ! ΑΡΧΙΖΕΙ ΤΟ ΠΑΡΤΥ!";
+
+                        messageElement.classList.add('entry-animation');
+                        const messageEntryDuration = 1500;
+
+                        setTimeout(() => {
+                            messageElement.classList.remove('entry-animation');
+                            messageElement.style.animation = '';
+
+                        }, messageEntryDuration);
+
+                         prevDays = Math.floor((new Date().getTime() - targetDate) / (1000 * 60 * 60 * 24));
+                         prevHours = Math.floor(((new Date().getTime() - targetDate) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                         prevMinutes = Math.floor(((new Date().getTime() - targetDate) % (1000 * 60 * 60)) / (1000 * 60));
+                         prevSeconds = Math.floor(((new Date().getTime() - targetDate) % (1000 * 60)) / 1000);
+
+
+                    }, explodeDuration);
+
+                }, shakeAndFlipDuration);
+
+                return;
+            }
+
+            if (transitionStarted && distance < 0) {
+                 const timeSince = now - targetDate;
+                 const days = Math.floor(timeSince / (1000 * 60 * 60 * 24));
+                 const hours = Math.floor((timeSince % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                 const minutes = Math.floor((timeSince % (1000 * 60 * 60)) / (1000 * 60));
+                 const seconds = Math.floor((timeSince % (1000 * 60)) / 1000);
+
+                 if (prevDays !== undefined && days !== prevDays) { animateChange('updays'); }
+                 if (prevHours !== undefined && hours !== prevHours) { animateChange('uphours'); }
+                 if (prevMinutes !== undefined && minutes !== prevMinutes) { animateChange('upminutes'); }
+                 if (prevSeconds !== undefined && seconds !== prevSeconds) { animateChange('upseconds'); }
+
+                 prevDays = days;
+                 prevHours = hours;
+                 prevMinutes = minutes;
+                 prevSeconds = seconds;
+
+                 document.getElementById("updays").innerText = days;
+                 document.getElementById("uphours").innerText = ("0" + hours).slice(-2);
+                 document.getElementById("upminutes").innerText = ("0" + minutes).slice(-2);
+                 document.getElementById("upseconds").innerText = ("0" + seconds).slice(-2);
+
+
+            }
+             else if (distance >= 0 && !transitionStarted) {
+                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                 if (prevDays !== undefined && days !== prevDays) { animateChange('days'); }
+                 if (prevHours !== undefined && hours !== prevHours) { animateChange('hours'); }
+                 if (prevMinutes !== undefined && minutes !== prevMinutes) { animateChange('minutes'); }
+                 if (prevSeconds !== undefined && seconds !== prevSeconds) { animateChange('seconds'); }
+
+                 prevDays = days;
+                 prevHours = hours;
+                 prevMinutes = minutes;
+                 prevSeconds = seconds;
+
+                 document.getElementById("days").innerText = days;
+                 document.getElementById("hours").innerText = ("0" + hours).slice(-2);
+                 document.getElementById("minutes").innerText = ("0" + minutes).slice(-2);
+                 document.getElementById("seconds").innerText = ("0" + seconds).slice(-2);
+
+                  if (days === 0 && hours === 0 && minutes === 0 && seconds > 0 && seconds <= 10) {
+                       secondsItem.classList.add('final-countdown-item');
+                   } else {
+                       secondsItem.classList.remove('final-countdown-item');
+                   }
+
+
+                  if (distance < (1000 * 60 * 60) && distance > 0) {
+                        messageElement.innerText = "ΤΕΛΕΥΤΑΙΑ ΛΕΠΤΑ!";
+                  } else if (distance < (1000 * 60 * 60 * 24) && distance >= (1000 * 60 * 60) ) {
+                      messageElement.innerText = "ΣΧΕΔΟΝ ΕΤΟΙΜΟ!";
+                  } else {
+                       messageElement.innerText = "";
+                       messageElement.style.animation = '';
+                  }
+            }
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            const diffX = mouseX - centerX;
+            const diffY = mouseY - centerY;
+
+            const translateFactor = 40;
+            const rotateFactor = 25;
+
+            const translateX = diffX / translateFactor;
+            const translateY = diffY / translateFactor;
+
+            const calculatedRotateY = diffX / rotateFactor;
+            const calculatedRotateX = -diffY / rotateFactor;
+
+            const maxRotation = 15;
+
+            const clampedRotateY = Math.max(-maxRotation, Math.min(maxRotation, calculatedRotateY));
+            const clampedRotateX = Math.max(-maxRotation, Math.min(maxRotation, calculatedRotateX));
+
+            if (!container.classList.contains('shake-animation') && !container.classList.contains('shake-and-flip-animation')) {
+                container.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) rotateX(${clampedRotateX}deg) rotateY(${clampedRotateY}deg)`;
+            }
+
+            const titleFollowFactor = 30;
+            const titleMoveX = diffX / titleFollowFactor;
+            const titleMoveY = diffY / titleFollowFactor;
+            titleElement.style.transform = `translate3d(${titleMoveX}px, ${titleMoveY}px, 0)`;
+        });
+
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+    </script>
+
+</body>
+</html>
